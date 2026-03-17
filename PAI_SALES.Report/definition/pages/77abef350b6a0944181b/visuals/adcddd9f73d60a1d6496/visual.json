@@ -698,48 +698,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "a1752408ad04077ad2b3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "2 Customer Trend"
-              }
-            },
-            "Property": "CardCode"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0a567df27abd08be7d0d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "2 Customer Trend"
-              }
-            },
-            "Property": "CardName"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "96b9b3d022e0b359303a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "2 Customer Trend"
-              }
-            },
-            "Property": "Order_Branch_Code"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

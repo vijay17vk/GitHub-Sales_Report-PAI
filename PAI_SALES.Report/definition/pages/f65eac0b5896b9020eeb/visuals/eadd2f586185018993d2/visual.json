@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "eadd2f586185018993d2",
+  "position": {
+    "x": 602.92439561606034,
+    "y": 106.9978504896107,
+    "z": 6000,
+    "height": 130.77515059841309,
+    "width": 268.34381551362685,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "Repeat Customers (CY vs PY)"
+                }
+              },
+              "queryRef": "Measure.Repeat Customers (CY vs PY)",
+              "nativeQueryRef": "Repeat Customers",
+              "displayName": "Repeat Customers"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Measure"
+                  }
+                },
+                "Property": "Repeat Customers (CY vs PY)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

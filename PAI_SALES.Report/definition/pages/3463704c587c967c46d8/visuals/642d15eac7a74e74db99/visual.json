@@ -6,7 +6,8 @@
     "y": 22.857142857142861,
     "z": 2000,
     "height": 310.00000000000006,
-    "width": 290
+    "width": 290,
+    "tabOrder": 3000
   },
   "visualGroup": {
     "displayName": "Volume %",

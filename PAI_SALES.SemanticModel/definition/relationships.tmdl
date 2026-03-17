@@ -125,9 +125,39 @@ relationship cdb8bbbe-673d-53e2-591a-a6eb6a8ff913
 	fromColumn: '2 Customer Trend'.Order_Branch_Code
 	toColumn: Warehouse_Master.WhsCode
 
+relationship e933dcc3-9edd-453b-9ac9-c58a25988db2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 1Customer_MainCat.'First Purchase Date'
+	toColumn: LocalDateTable_2f67ea30-45c2-4637-a127-4bb146005f37.Date
+
+relationship 562f684b-8c1d-4a80-9280-68008ed5d3b0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 1Customer_MainCat.'Last Purchase Date'
+	toColumn: LocalDateTable_4776a5f4-8e4e-4449-ad64-bada89f4a376.Date
+
+relationship 502b4bfb-e939-2f23-8f2a-59dffe717f4d
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Customer_MainCategory.CardCode
+	toColumn: 1Customer_MainCat.CardCode
+
 relationship 5992e696-8b47-3b73-d2ba-4614a5ddf68a
 	fromColumn: Customer_MainCategory.Property
 	toColumn: MainCat_Master.'Main Category'
+
+relationship 67a447ba-9aed-6108-3c9d-45cd82017042
+	fromColumn: 1Customer_MainCat.Property
+	toColumn: MainCat_Master.'Main Category'
+
+relationship c5e48c17-a93e-2315-d3c8-c98b2c42f074
+	fromColumn: 1Customer_MainCat.CardCode
+	toColumn: Cust_Vend_Master.CardCode
+
+relationship ceb779cf-ea72-ab81-b846-fb6cc24cb7da
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 1Customer_MainCat.CardCode
+	toColumn: Final_Fact.CardCode
 
 relationship 1cbddd70-59cc-b9ed-ceb4-2adc43e39fd0
 	fromColumn: Customer_MainCategory.CardCode
@@ -173,34 +203,4 @@ relationship 31ce99c0-0f78-370a-dd33-0a4a4a03c9af
 relationship b3d78cf9-d28f-2099-7e1f-a3f4c520467b
 	fromColumn: Sale_Return.DocDate
 	toColumn: DateTable.Date
-
-relationship c5e48c17-a93e-2315-d3c8-c98b2c42f074
-	fromColumn: Customer_MainCat.CardCode
-	toColumn: Cust_Vend_Master.CardCode
-
-relationship ceb779cf-ea72-ab81-b846-fb6cc24cb7da
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: Customer_MainCat.CardCode
-	toColumn: Final_Fact.CardCode
-
-relationship 502b4bfb-e939-2f23-8f2a-59dffe717f4d
-	crossFilteringBehavior: bothDirections
-	toCardinality: many
-	fromColumn: Customer_MainCategory.CardCode
-	toColumn: Customer_MainCat.CardCode
-
-relationship 67a447ba-9aed-6108-3c9d-45cd82017042
-	fromColumn: Customer_MainCat.Property
-	toColumn: MainCat_Master.'Main Category'
-
-relationship 77e6b5bd-69bd-4449-8e4f-9f86ba493b39
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Customer_MainCat.'First Purchase Date'
-	toColumn: LocalDateTable_2f67ea30-45c2-4637-a127-4bb146005f37.Date
-
-relationship cdc14693-064b-46fa-911d-131d5b0e31cf
-	joinOnDateBehavior: datePartOnly
-	fromColumn: Customer_MainCat.'Last Purchase Date'
-	toColumn: LocalDateTable_4776a5f4-8e4e-4449-ad64-bada89f4a376.Date
 

@@ -1030,13 +1030,6 @@ table Measure
 			        BLANK()
 			        )
 			
-			Var _mainnew=
-			    If(
-			        ISFILTERED('Category Slicer'[Property]),
-			        "Main Category(" & CONCATENATEX(VALUES('Category Slicer'[Property]), 'Category Slicer'[Property], ", ") & ")",
-			        BLANK()
-			        )
-			
 			
 			
 			
@@ -1068,8 +1061,7 @@ table Measure
 			                _range,
 			                _date,
 			                _finyear,
-			                _newold,
-			                _mainnew
+			                _newold
 			
 			
 			
@@ -3160,43 +3152,87 @@ table Measure
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Customers Who Bought Selected Category' = ```
+	measure Items_Count_Doc =
 			
-			CALCULATETABLE(
-			    VALUES('Cust_Vend_Master'[CardCode]),
-			    REMOVEFILTERS('Warehouse_Master'),        -- ignore branch filter
-			    REMOVEFILTERS('Cust_Vend_Master'),      -- ignore customer filter  
-			    'Item_Master'[Property] = SELECTEDVALUE('Category Slicer'[Property])
+			CALCULATE(
+			    COUNT(Final_Fact[ItemCode]),
+			    ALLEXCEPT(Final_Fact, Final_Fact[DocEntry])
 			)
-			```
-		displayFolder: Not Purchased Category
-		lineageTag: 7f7e25d6-0f08-47dd-8364-ea72d836fb54
+		formatString: 0
+		lineageTag: 684ea41e-8471-4cef-b225-51d41e4c28e1
 
-	measure 'Never Bought Flag' =
+	measure CY_Avg_Spend_Per_Customer =
 			
-			VAR SelectedProperty =
-			    SELECTEDVALUE('Category Slicer'[Property])
+			DIVIDE(
+			    [Sales Total],
+			    [Customers Total]
+			)
+		lineageTag: 2801bade-d005-43d5-96e2-c90c92e34f29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PY_Avg_Spend_Per_Customer =
 			
-			VAR CurrentCustomer =
-			    MAX('Cust_Vend_Master'[CardCode])
+			CALCULATE(
+			    [CY_Avg_Spend_Per_Customer],
+			    SAMEPERIODLASTYEAR('DateTable'[Date])
+			)
+		lineageTag: ae01f338-fccd-49b9-a50b-32695599d0e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Repeat Customers (CY vs PY)' =
 			
-			VAR BoughtInProperty =
+			VAR CY_Customers =
+			    VALUES(Final_Fact[CardCode])
+			
+			VAR PY_Customers =
 			    CALCULATETABLE(
-			        DISTINCT('Customer_MainCategory'[CardCode]),
-			        'Customer_MainCategory'[Property] = SelectedProperty,
-			        REMOVEFILTERS('Cust_Vend_Master'),
-			        REMOVEFILTERS('Warehouse_Master')
+			        VALUES(Final_Fact[CardCode]),
+			        SAMEPERIODLASTYEAR('DateTable'[Date]),
+			        ALL('DateTable')
 			    )
 			
 			RETURN
-			    IF(
-			        NOT ISBLANK(SelectedProperty),
-			        IF(NOT(CurrentCustomer IN BoughtInProperty), 1, 0),
-			        BLANK()
-			    )
+			COUNTROWS(
+			    INTERSECT(CY_Customers, PY_Customers)
+			)
 		formatString: 0
-		displayFolder: Not Purchased Category
-		lineageTag: 0142ce76-844f-4b5c-a458-1812b179f491
+		lineageTag: efa2c568-0c09-4427-85df-a86eaf100ed6
+
+	measure 'Repeat Customer % (CY vs PY)' =
+			
+			DIVIDE(
+			    [Repeat Customers (CY vs PY)],
+			    [Customers Total],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 33d98e3f-7a5f-4d15-8852-b561da10aa58
+
+	measure 'PY Repeat Customer %' =
+			
+			CALCULATE(
+			    [Repeat Customer % (CY vs PY)],
+			    SAMEPERIODLASTYEAR('DateTable'[Date])
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: ec1a18a0-28e3-4ca6-a1c1-9815d38d523e
+
+	measure 'Repeat Customer % Diff' =
+			
+			[Repeat Customer % (CY vs PY)] - [PY Repeat Customer %]
+		formatString: 0%;-0%;0%
+		lineageTag: 2e69a5b6-a98a-4614-8070-0dafe2bd3c37
+
+	measure 'PY Customers Total' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Final_Fact[CardCode]),
+			    SAMEPERIODLASTYEAR('DateTable'[Date])
+			)
+		formatString: 0
+		lineageTag: f6457a8e-33e9-4ee1-ab1d-e06397a6ac31
 
 	column Unit
 		lineageTag: fa86d86e-a46b-4275-8d4e-2d07bbf59e01

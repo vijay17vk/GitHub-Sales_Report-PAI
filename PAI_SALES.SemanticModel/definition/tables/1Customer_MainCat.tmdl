@@ -1,4 +1,4 @@
-table Customer_MainCat
+table 1Customer_MainCat
 	lineageTag: fbde9ab9-4d56-42c1-97c0-0ef2c7ff263f
 
 	column CardCode
@@ -35,7 +35,7 @@ table Customer_MainCat
 
 		variation Variation
 			isDefault
-			relationship: 77e6b5bd-69bd-4449-8e4f-9f86ba493b39
+			relationship: e933dcc3-9edd-453b-9ac9-c58a25988db2
 			defaultHierarchy: LocalDateTable_2f67ea30-45c2-4637-a127-4bb146005f37.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
@@ -49,26 +49,29 @@ table Customer_MainCat
 
 		variation Variation
 			isDefault
-			relationship: cdc14693-064b-46fa-911d-131d5b0e31cf
+			relationship: 562f684b-8c1d-4a80-9280-68008ed5d3b0
 			defaultHierarchy: LocalDateTable_4776a5f4-8e4e-4449-ad64-bada89f4a376.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Customer_MainCat = calculated
+	partition 1Customer_MainCat = calculated
 		mode: import
 		source =
 				
 				SUMMARIZE (
 				    FILTER(
 				        Final_Fact,
-				        Final_Fact[Type] = "SI"
+				        Final_Fact[Type]="SI"
 				    ),
 				    Final_Fact[CardCode],
 				    Item_Master[Property],
-				    "Purchase Count", DISTINCTCOUNT ( Final_Fact[DocEntry] ),
-				    "First Purchase Date", MIN ( Final_Fact[DocDate]),
-				    "Last Purchase Date", MAX ( Final_Fact[DocDate])
-				)
+				    "Purchase Count",
+				    DISTINCTCOUNT ( Final_Fact[DocEntry] ),
+				    "First Purchase Date",
+				    MIN ( Final_Fact[DocDate]),
+				    "Last Purchase Date",
+				    MAX ( Final_Fact[DocDate])
+				    )
 
 	annotation PBI_Id = 8b2379e172b04ea6be2fe3c13a6f2134
 

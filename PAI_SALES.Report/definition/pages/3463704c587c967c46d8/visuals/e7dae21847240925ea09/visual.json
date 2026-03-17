@@ -6,7 +6,8 @@
     "y": 486.66666666666669,
     "z": 1000,
     "height": 503.33333333333337,
-    "width": 1220
+    "width": 1220,
+    "tabOrder": 3000
   },
   "visualGroup": {
     "displayName": "Table Chart",

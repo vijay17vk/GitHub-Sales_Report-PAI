@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Customer_MainCat"
+                      "Entity": "1Customer_MainCat"
                     }
                   },
                   "Property": "CardCode"
@@ -34,7 +34,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Customer_MainCat"
+                      "Entity": "1Customer_MainCat"
                     }
                   },
                   "Property": "Property"
@@ -50,7 +50,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Customer_MainCat"
+                          "Entity": "1Customer_MainCat"
                         }
                       },
                       "Property": "Purchase Count"

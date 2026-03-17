@@ -48,7 +48,9 @@ ref table LocalDateTable_c838fe53-c362-41b5-b278-edbeb360fe28
 ref table LocalDateTable_7de6df1c-9de9-43dd-b22e-e590caf27950
 ref table Customer_MainCategory
 ref table MainCat_Master
-ref table Customer_MainCat
+ref table 1Customer_MainCat
+ref table LocalDateTable_2f67ea30-45c2-4637-a127-4bb146005f37
+ref table LocalDateTable_4776a5f4-8e4e-4449-ad64-bada89f4a376
 ref table DateTable2
 ref table DateTable3
 ref table DateTable4
@@ -64,11 +66,6 @@ ref table Sales%
 ref table Volume%
 ref table GP%
 ref table What_IF_Category
-ref table LocalDateTable_2f67ea30-45c2-4637-a127-4bb146005f37
-ref table LocalDateTable_4776a5f4-8e4e-4449-ad64-bada89f4a376
-ref table 'Category Slicer'
-ref table Customers_Never_Bought
-ref table Customers_Never_Bought_ByProperty
 
 ref cultureInfo en-US
 

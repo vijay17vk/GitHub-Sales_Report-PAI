@@ -133,23 +133,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "520551c765d968e0acd5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Warehouse_Master"
-              }
-            },
-            "Property": "WhsName"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
